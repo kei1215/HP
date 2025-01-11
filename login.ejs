@@ -1,0 +1,231 @@
+<html lang="ja_JP">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Page Title</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Include Bootstrap JS and Popper.js (required for Bootstrap dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <style>
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--bs-font-sans-serif);
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+
+      a {
+        color: #6f42c1;
+        text-decoration: none;
+      }
+
+      .lead {
+        font-size: 1.25rem;
+        font-weight: 300;
+      }
+
+      .display-3 {
+        font-size: calc(1.525rem + 3.3vw);
+        font-weight: 300;
+        line-height: 1.2;
+      }
+
+      @media (min-width: 1200px) {
+        .display-3 {
+          font-size: 4rem;
+        }
+      }
+
+      .btn {
+        display: inline-block;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+          border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+
+      .btn-primary {
+        color: #fff;
+        background-color: #6f42c1;
+        border-color: #6f42c1;
+      }
+
+      .btn-group-lg > .btn,
+      .btn-lg {
+        padding: 0.5rem 1rem;
+        font-size: 1.25rem;
+        border-radius: 0.3rem;
+      }
+
+      .my-5 {
+        margin-top: 3rem !important;
+        margin-bottom: 3rem !important;
+      }
+
+      .mb-4 {
+        margin-bottom: 1.5rem !important;
+      }
+
+      .px-4 {
+        padding-right: 1.5rem !important;
+        padding-left: 1.5rem !important;
+      }
+
+      .text-center {
+        text-align: center !important;
+      }
+      body {
+        position: relative;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      body > main {
+        flex-shrink: 0;
+        margin-top: 4rem;
+        margin-bottom: 2.5rem;
+      }
+    </style>
+    <link href="/assets/css/common.css?v=2_50_0001" rel="stylesheet" />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-md bg-light navbar-light shadow-sm"
+      id="urec_navmenu"
+    >
+      <div class="container">
+        <div class="collapse navbar-collapse" id="top_navbar">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <% if(user) { %><li class="nav-item">
+              <a class="nav-link" aria-current="page" href="<%= url %>/">ホーム</a>
+            </li><% } %>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="<%= url %>/vsdata/<%= sf %>">対戦記録</a>
+            </li><% if(user) { %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >ツール</a
+              >
+              <ul class="dropdown-menu fade shadow-sm">
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/normal">normalの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/hard">hardの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/extra">extraの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/stella">stellaの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/olivier">olivierの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/cd">複合対戦の更新</a>
+                </li>
+              </ul>
+            </li><% } %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >レートランキング</a
+              >
+              <ul class="dropdown-menu fade shadow-sm">
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/stella/<%= sf %>">stellaのレートランキング</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/olivier/<%= sf %>">olivierのレートランキング</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/sd/<%= sf %>">複合のレートランキング</a>
+                </li>
+              </ul>
+            </li>
+            <!--<li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/help/ja_JP/"
+                >ヘルプ</a
+              >
+            </li><!---->
+          </ul>
+          <ul class="navbar-nav mb-2 mb-md-0"><% if(user) { %>
+            <li class="nav-item dropdown">
+              
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                ><%= user.username %> さん</a
+              >
+              <ul class="dropdown-menu dropdown-menu-end fade shadow-sm">
+                <li><a class="dropdown-item" href="<%= url %>/logout">ログアウト</a></li><% }else{ %>
+                <a class="dropdown-item" href="<%= url %>/login">ログイン</a>
+                <% } %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="container-fluid text-center my-5">
+        <h1 class="display-3 mb-4">WDS-LEAGUE</h1>
+        <p class="lead">ユメステでの対戦記録を保存するちょっとした拡張ツール</p>
+        <p>WDS-LEAGUEでレートやランキングを見ながら対戦を楽しもう</p>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <div class="my-3">
+            <a
+              href="<%= DISCORD_AUTH_URL %>"
+              class="btn btn-lg btn-primary px-4"
+              >DISCORDを使用してログイン</a
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
+
+
+

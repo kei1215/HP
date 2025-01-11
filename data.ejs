@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Page Title</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Include Bootstrap JS and Popper.js (required for Bootstrap dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <title></title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td {
+      border: 1px solid #dddddd;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select{
+      width: calc(100%); /* パディングを考慮して入力フィールドの幅を設定 */
+      padding: 8px;
+      border: solid #dddddd; /* 表の枠と同じ色 */
+      
+      box-sizing: border-box; /* パディングを含めた幅を指定 */
+    }
+    input[type="text"],
+input[type="email"],
+input[type="number"],
+    select{
+  width: calc(100%); /* パディングを考慮して入力フィールドの幅を設定 */
+  padding: 6px; /* セル内の余白を設定 */
+  border: none; /* 枠線を削除 */
+  box-sizing: border-box; /* パディングを含めた幅を指定 */
+  background-color: transparent; /* 背景色を透明に設定 */
+}
+  </style>
+</head>
+<body>
+    <nav
+      class="navbar navbar-expand-md bg-light navbar-light shadow-sm"
+      id="urec_navmenu"
+    >
+      <div class="container">
+        <div class="collapse navbar-collapse" id="top_navbar">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <% if(user) { %><li class="nav-item">
+              <a class="nav-link" aria-current="page" href="<%= url %>/">ホーム</a>
+            </li><% } %>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="<%= url %>/vsdata/<%= sf %>">対戦記録</a>
+            </li><% if(user) { %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >ツール</a
+              >
+              <ul class="dropdown-menu fade shadow-sm">
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/normal">normalの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/hard">hardの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/extra">extraの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/stella">stellaの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/olivier">olivierの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/cd">複合対戦の更新</a>
+                </li>
+              </ul>
+            </li><% } %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >レートランキング</a
+              >
+              <ul class="dropdown-menu fade shadow-sm">
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/stella/<%= sf %>">stellaのレートランキング</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/olivier/<%= sf %>">olivierのレートランキング</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/sd/<%= sf %>">複合のレートランキング</a>
+                </li>
+              </ul>
+            </li>
+            <!--<li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/help/ja_JP/"
+                >ヘルプ</a
+              >
+            </li><!---->
+          </ul>
+          <ul class="navbar-nav mb-2 mb-md-0"><% if(user) { %>
+            <li class="nav-item dropdown">
+              
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                ><%= user.username %> さん</a
+              >
+              <ul class="dropdown-menu dropdown-menu-end fade shadow-sm">
+                <li><a class="dropdown-item" href="<%= url %>/logout">ログアウト</a></li><% }else{ %>
+                <a class="dropdown-item" href="<%= url %>/login">ログイン</a>
+                <% } %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <h1>スコア計算</h1>
+  <form method="POST" action="<%= set %>"id="myForm">
+  <table >
+    <thead>
+      <tr>
+        <th>Player1</th>
+        <th>Perfect+</th>
+        <th>Perfect</th>
+        <th>Great</th>
+        <th>Good</th>
+        <th>Bad</th>
+        <th>Miss</th>
+        <!-- 他の列をここに追加 -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" name="Player1" id="Player1" value="<%= user.username %>" readonly="readonly"></td>
+        <td><input type="number" name="Perfectp1" id="Perfectp1"value=0></td>
+        <td><input type="number" name="Perfect1" id="Perfect1"value=0></td>
+        <td><input type="number" name="Great1" id="Great1"value=0></td>
+        <td><input type="number" name="Good1" id="Good1"value=0></td>
+        <td><input type="number" name="Bad1" id="Bad1"value=0></td>
+        <td><input type="number" name="Miss1" id="Miss1"value=0></td>
+        
+        <!-- 他の列をここに追加 -->
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th>Player2</th>
+        <th>Perfect+</th>
+        <th>Perfect</th>
+        <th>Great</th>
+        <th>Good</th>
+        <th>Bad</th>
+        <th>Miss</th>
+        <!-- 他の列をここに追加 -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+  <select name="Player2" id="Player2">
+    <option>対戦相手を選択</option>
+    <% fd.forEach(link => { %>
+      <option value="<%= link.un %>"><%= link.un %></option>
+    <% }); %>
+  </select>
+</td>
+    
+    <!-- Add more options as needed -->
+  </select></td>
+        <td><input type="number" name="Perfectp2" id="Perfectp2"value=0></td>
+        <td><input type="number" name="Perfect2" id="Perfect2"value=0></td>
+        <td><input type="number" name="Great2" id="Great2"value=0></td>
+        <td><input type="number" name="Good2" id="Good2"value=0></td>
+        <td><input type="number" name="Bad2" id="Bad2"value=0></td>
+        <td><input type="number" name="Miss2" id="Miss2"value=0></td>
+        <!-- 他の列をここに追加 -->
+      </tr>
+    </tbody>
+    <thead>
+      <tr>
+        <th>曲名</th>
+        <th>対戦記録の公開設定</th>
+        <th>採点方式</th>
+        <% if(v) { %><th>プレーヤー1の難易度</th><% } %>
+        <% if(v) { %><th>プレーヤー2の難易度</th><% } %>
+        <!-- 他の列をここに追加 -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" name="musicname" id="musicname"></td>
+        <td><select name="matchrecords" id="matchrecords"><option value="yes">公開</option><option value="no">非公開</option></td>
+        <td><select name="scoringmethod" id="scoringmethod"><option value="2">達成率</option><option value="3">達成率(chunithm表示)</option></td>
+        <% if(v) { %><td><select name="cd1" id="cd1"><option value="1">normal</option><option value="2">hard</option><option value="3">extra</option><option value="4">stella</option><option value="5">olivier</option></td><% } %>
+        <% if(v) { %><td><select name="cd2" id="cd2"><option value="1">normal</option><option value="2">hard</option><option value="3">extra</option><option value="4">stella</option><option value="5">olivier</option></td><% } %>
+      </tr>
+    </tbody>
+  </table>
+  <button type="submit" style="all: unset;display: inline-block;
+  padding: 1px 7px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13.3333px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #f8f8f8;
+  color: #333;">送信</button>
+  </form>
+</body>
+</html>

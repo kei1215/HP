@@ -1,0 +1,246 @@
+<html lang="ja_JP" class="_SD_ACTIVE_ _SD_LOADED_ _SD_LOADED_FULL_">
+  <head>
+    <title>season0</title>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Page Title</title>
+    <!-- Include Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Include Bootstrap JS and Popper.js (required for Bootstrap dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <style>
+      :root {
+        --bs-gray-300: #dee2e6;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      tbody,
+      td,
+      th,
+      thead,
+      tr {
+        border-color: inherit;
+        border-style: solid;
+        border-width: 0;
+      }
+      [type="button"]:not(:disabled),
+      [type="reset"]:not(:disabled),
+      [type="submit"]:not(:disabled),
+      button:not(:disabled) {
+        cursor: pointer;
+      }
+
+      .container {
+        width: 100%;
+        padding-right: var(--bs-gutter-x, 0.75rem);
+        padding-left: var(--bs-gutter-x, 0.75rem);
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      @media (min-width: 1200px) {
+        .container {
+          max-width: 1140px;
+        }
+      }
+
+      .table {
+        --bs-table-bg: transparent;
+        --bs-table-striped-color: #212529;
+        --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+        --bs-table-active-color: #212529;
+        --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+        --bs-table-hover-color: #212529;
+        --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        vertical-align: top;
+        border-color: #dee2e6;
+      }
+
+      .table > :not(caption) > * > * {
+        padding: 0.5rem 0.5rem;
+        background-color: var(--bs-table-bg);
+        border-bottom-width: 1px;
+        box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+      }
+      :lang(ja_JP) {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", "ヒラギノ角ゴ Pro W3",
+          "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+          "Noto Color Emoji";
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          padding-right: 1.75rem;
+          padding-left: 1.75rem;
+        }
+      }
+
+      .table > :not(:last-child) > :last-child > * {
+        border-bottom-color: inherit;
+        border-bottom-width: 2px;
+      }
+
+      .responsive-table {
+        font-size: 0.77rem;
+        border-collapse: separate !important;
+        border-spacing: 0;
+      }
+
+      .responsive-table thead th {
+        font-size: 0.9em;
+        text-align: center;
+        border-bottom: 2px solid var(--bs-gray-300) !important;
+      }
+
+      .responsive-table tbody td {
+        padding: 0.45em 0.3em;
+      }
+
+      @media (min-width: 800px) {
+        .responsive-table {
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .responsive-table {
+          font-size: 1rem;
+        }
+      }
+
+      .table-rating-best tbody td:first-child {
+        width: 80%;
+        text-align: center;
+      }
+
+      .table-rating-best tbody td {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-md bg-light navbar-light shadow-sm"
+      id="urec_navmenu"
+    >
+      <div class="container">
+        <div class="collapse navbar-collapse" id="top_navbar">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <% if(user) { %><li class="nav-item">
+              <a class="nav-link" aria-current="page" href="<%= url %>/">ホーム</a>
+            </li><% } %>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="<%= url %>/vsdata/<%= sf %>">対戦記録</a>
+            </li><% if(user) { %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >ツール</a
+              >
+              <ul class="dropdown-menu fade shadow-sm">
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/normal">normalの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/hard">hardの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/extra">extraの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/stella">stellaの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/olivier">olivierの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/cd">複合対戦の更新</a>
+                </li>
+              </ul>
+            </li><% } %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >レートランキング</a
+              >
+              <ul class="dropdown-menu fade shadow-sm">
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/stella/<%= sf %>">stellaのレートランキング</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/olivier/<%= sf %>">olivierのレートランキング</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/sd/<%= sf %>">複合のレートランキング</a>
+                </li>
+              </ul>
+            </li>
+            <!--<li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/help/ja_JP/"
+                >ヘルプ</a
+              >
+            </li><!---->
+          </ul>
+          <ul class="navbar-nav mb-2 mb-md-0"><% if(user) { %>
+            <li class="nav-item dropdown">
+              
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                ><%= user.username %> さん</a
+              >
+              <ul class="dropdown-menu dropdown-menu-end fade shadow-sm">
+                <li><a class="dropdown-item" href="<%= url %>/logout">ログアウト</a></li><% }else{ %>
+                <a class="dropdown-item" href="<%= url %>/login">ログイン</a>
+                <% } %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
+    <main>
+      
+        <h3><center>全プレーヤーの承認済み対戦記録</center><h3>
+      <div class="container mt-3">
+        
+        <div id="page_best">
+          <table
+            class="table table-hover table-sm responsive-table table-rating-best table-sticky-header w-100"
+            id="table_best"
+          >
+            <thead>
+              <tr>
+                <th>対戦ユーザー</th>
+                <th>難易度</th>
+                <th>対戦結果</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% links.forEach(link => { %>
+    <tr>
+      <td><a href="<%= url %><%= link.link %>"><%= link.name %></a></td>
+<td><%= link.varsion %></td>
+        <td><%= link.wn %></td>
+    </tr>
+  <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

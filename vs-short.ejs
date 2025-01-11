@@ -1,0 +1,335 @@
+<html lang="ja_JP" class="_SD_ACTIVE_ _SD_LOADED_ _SD_LOADED_FULL_">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Include Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <title>season0</title>
+    <style>
+      :root {
+        --bs-gray-300: #dee2e6;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      tbody,
+      td,
+      th,
+      thead,
+      tr {
+        border-color: inherit;
+        border-style: solid;
+        border-width: 0;
+      }
+      [type="button"]:not(:disabled),
+      [type="reset"]:not(:disabled),
+      [type="submit"]:not(:disabled),
+      button:not(:disabled) {
+        cursor: pointer;
+      }
+
+      .container {
+        width: 100%;
+        padding-right: var(--bs-gutter-x, 0.75rem);
+        padding-left: var(--bs-gutter-x, 0.75rem);
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      @media (min-width: 1200px) {
+        .container {
+          max-width: 1140px;
+        }
+      }
+
+      .table {
+        --bs-table-bg: transparent;
+        --bs-table-striped-color: #212529;
+        --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+        --bs-table-active-color: #212529;
+        --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+        --bs-table-hover-color: #212529;
+        --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+        vertical-align: top;
+        border-color: #dee2e6;
+      }
+
+      .table > :not(caption) > * > * {
+        padding: 0.5rem 0.5rem;
+        background-color: var(--bs-table-bg);
+        border-bottom-width: 1px;
+        box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+      }
+      :lang(ja_JP) {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, "Noto Sans", "ヒラギノ角ゴ Pro W3",
+          "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS P Gothic", sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+          "Noto Color Emoji";
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          padding-right: 1.75rem;
+          padding-left: 1.75rem;
+        }
+      }
+
+      .table > :not(:last-child) > :last-child > * {
+        border-bottom-color: inherit;
+        border-bottom-width: 2px;
+      }
+
+      .responsive-table {
+        font-size: 0.77rem;
+        border-collapse: separate !important;
+        border-spacing: 0;
+      }
+
+      .responsive-table thead th {
+        font-size: 0.9em;
+        text-align: center;
+        border-bottom: 2px solid var(--bs-gray-300) !important;
+      }
+
+      .responsive-table tbody td {
+        padding: 0.45em 0.3em;
+      }
+
+      @media (min-width: 800px) {
+        .responsive-table {
+          font-size: 0.85rem;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .responsive-table {
+          font-size: 1rem;
+        }
+      }
+
+      .table-rating-best tbody td {
+        width: 33.3333333%;
+        text-align: center;
+      }
+
+      .table-rating-best tbody td {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-md bg-light navbar-light shadow-sm"
+      id="urec_navmenu"
+    >
+      <div class="container">
+        <div class="collapse navbar-collapse" id="top_navbar">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <% if(user) { %><li class="nav-item">
+              <a class="nav-link" aria-current="page" href="<%= url %>/">ホーム</a>
+            </li><% } %>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="<%= url %>/vsdata/<%= sf %>">対戦記録</a>
+            </li><% if(user) { %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >ツール</a
+              >
+              <ul class="dropdown-menu fade shadow-sm">
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/normal">normalの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/hard">hardの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/extra">extraの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/stella">stellaの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/olivier">olivierの更新</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/sc/cd">複合対戦の更新</a>
+                </li>
+              </ul>
+            </li><% } %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" >レートランキング</a
+              >
+              <ul class="dropdown-menu fade shadow-sm">
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/stella/<%= sf %>">stellaのレートランキング</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/olivier/<%= sf %>">olivierのレートランキング</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="<%= url %>/rate/sd/<%= sf %>">複合のレートランキング</a>
+                </li>
+              </ul>
+            </li>
+            <!--<li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/help/ja_JP/"
+                >ヘルプ</a
+              >
+            </li><!---->
+          </ul>
+          <ul class="navbar-nav mb-2 mb-md-0"><% if(user) { %>
+            <li class="nav-item dropdown">
+              
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                ><%= user.username %> さん</a
+              >
+              <ul class="dropdown-menu dropdown-menu-end fade shadow-sm">
+                <li><a class="dropdown-item" href="<%= url %>/logout">ログアウト</a></li><% }else{ %>
+                <a class="dropdown-item" href="<%= url %>/login">ログイン</a>
+                <% } %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="container mt-3">
+        <div id="page_best">
+          <table
+            class="table table-hover table-sm responsive-table table-rating-best table-sticky-header w-100"
+            id="table_best"
+          >
+            <thead>
+              <tr>
+                <th><%= md.p1 %></th>
+                <th>Vs</th>
+                <th><%= md.p2 %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= md.nr1 %></td>
+                <td>Rate</td>
+                <td><%= md.nr2 %></td>
+              </tr>
+              <tr>
+                <td><%= md.spp1 %></td>
+                <td>Parfect+</td>
+                <td><%= md.spp2 %></td>
+              </tr>
+              <tr>
+                <td><%= md.sp1 %></td>
+                <td>Parfect</td>
+                <td><%= md.sp2 %></td>
+              </tr>
+              <tr>
+                <td><%= md.sgr1 %></td>
+                <td>Great</td>
+                <td><%= md.sgr2 %></td>
+              </tr>
+              <tr>
+                <td><%= md.sgo1 %></td>
+                <td>Good</td>
+                <td><%= md.sgo2 %></td>
+              </tr>
+              <tr>
+                <td><%= md.sb1 %></td>
+                <td>Bad</td>
+                <td><%= md.sb2 %></td>
+              </tr>
+              <tr>
+                <td><%= md.sm1 %></td>
+                <td>Miss</td>
+                <td><%= md.sm2 %></td>
+              </tr>
+              <tr>
+                <td><%= md.e1 %></td>
+                <td>evaluation</td>
+                <td><%= md.e2 %></td>
+              </tr>
+              <tr>
+                <td><%= md.s1 %></td>
+                <td>Result score</td>
+                <td><%= md.s2 %></td>
+              </tr>
+              <tr>
+                <td><%= md.w1 %></td>
+                <td>Result</td>
+                <td><%= md.w2 %></td>
+              </tr>
+              <tr>
+                <td><%= md.r1 %></td>
+                <td>rate movement</td>
+                <td><%= md.r2 %></td>
+              </tr>
+              
+              <% if(md.cd1){ %><tr>
+                <td><% if(md.cd1="1"){ %>normal<% }else if(md.cd1="2"){ %>hard<% }else if(md.cd1="3"){ %>extra<% }else if(md.cd1="4"){ %>stella<% }else{ %>olivier<% } %></td>
+                <td>selection difficulty</td>
+                <td><% if(md.cd2="1"){ %>normal<% }else if(md.cd2="2"){ %>hard<% }else if(md.cd2="3"){ %>extra<% }else if(md.cd2="4"){ %>stella<% }else{ %>olivier<% } %></td>
+              </tr><% } %>
+              <tr>
+                <td></td>
+                <td>　</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>曲名</td>
+                <td>採点方式</td>
+                <td>公開設定</td>
+              </tr>
+              <tr>
+                <td><%= md.mname %></td><td>
+  <% if (md.method === 1) { %>
+    独自式(wdsレート組開発)
+  <% } else if (md.method === 2) { %>
+    達成率
+  <% } else if (md.method === 3) { %>
+    達成率(chunithm表示)
+  <% } %>
+</td>
+                <td><% if (md.record === "yes") { %>
+    公開
+  <% } else if (md.record === "no") { %>
+    非公開
+  <% } %></td>
+              </tr>
+            </tbody>
+          </table>
+          <form action="/vsdata/season0/<%= md.id %>" method="POST">
+            <button type="submit" style="all: unset;display: inline-block;
+  padding: 1px 7px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13.3333px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #f8f8f8;
+  color: #333;">承諾</button>
+          </form>
+
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
